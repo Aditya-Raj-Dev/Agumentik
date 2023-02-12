@@ -2,8 +2,8 @@ const express=require("express")
 const cors=require("cors")
 const {connection}=require("./database/db")
 const { SignupRoute } = require("./Route/Signup/Signup.route")
-const { LoginRoute } = require("./Route/Signup/Login.route")
-
+const { DataRoute } = require("./Route/Data/Data.route")
+const { LeadRoute } = require("./Route/Signup/Lead.route")
 
 
 
@@ -13,7 +13,8 @@ app.use(express.json())
 
 
 app.use("/signup",SignupRoute)
-app.use("/login",LoginRoute)
+app.use("/lead",LeadRoute)
+app.use("/data",DataRoute)
 
 app.get("/",(req,res)=>{
     res.send("welcome")

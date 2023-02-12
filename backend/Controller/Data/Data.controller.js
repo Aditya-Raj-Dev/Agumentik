@@ -1,3 +1,4 @@
+
 const {Datamodel}=require("../../Model/Data.model")
 
 const GetData= async (req,res)=>{
@@ -16,7 +17,7 @@ const PostData= async(req,res)=>{
         res.status(201).send({"msg":"success",data:data})
     }
     catch(e){
-        res.status(500).send({"msg":"failed"})
+        res.status(500).send({"msg":"failed","error":e})
     }
 }
 
@@ -29,3 +30,5 @@ const AddotherAdmin= async(req,res)=>{
 
     }
 }
+
+module.exports={GetData,PostData}
