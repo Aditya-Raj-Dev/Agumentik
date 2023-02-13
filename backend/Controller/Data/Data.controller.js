@@ -1,5 +1,6 @@
 
 const {Datamodel}=require("../../Model/Data.model")
+const { Leadmodel } = require("../../Model/lead.model")
 
 const GetData= async (req,res)=>{
     try{
@@ -14,7 +15,7 @@ const GetData= async (req,res)=>{
 const PostData= async(req,res)=>{
     try{
         const data=await Datamodel.create(req.body);
-        res.status(201).send({"msg":"success",data:data})
+        res.status(201).send({"msg":"success","data":data})
     }
     catch(e){
         res.status(500).send({"msg":"failed","error":e})
@@ -24,11 +25,12 @@ const PostData= async(req,res)=>{
 
 const AddotherAdmin= async(req,res)=>{
     try{
-      const data=await Datamodel.findOne({email})
+      const data=await Leadmodel.findOneAndUpdate({contact:req.body.contact},{role:"admin"},{new:true})
+      res.status(201).send({"msg":"success","data":data})
     }
-    catch{
-
+    catch(e){
+res.status(500).send({"msg":"failed","error":e})
     }
 }
 
-module.exports={GetData,PostData}
+module.exports={GetData,PostData,AddotherAdmin}

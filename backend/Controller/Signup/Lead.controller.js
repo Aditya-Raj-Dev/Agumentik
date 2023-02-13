@@ -17,4 +17,9 @@ const Lead=async (req,res)=>{
       }
 }
 
- module.exports={Lead}
+const GetLeads=async(req,res)=>{
+   const user= await Leadmodel.find()
+   res.send({"msg":"success",toast:"s","data":user})
+}
+
+ module.exports={Lead,GetLeads}
